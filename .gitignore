@@ -1,0 +1,6 @@
+!.gitkeep
+angular/.idea
+angular/.DS_Store
+angular/node_modules/
+angular/bower_components/
+angular/angular-phonecat/
