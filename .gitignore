@@ -4,3 +4,8 @@ angular/.DS_Store
 angular/node_modules/
 angular/bower_components/
 angular/angular-phonecat/
+testing-software/
+react-router-redux/node_modules/
+react-router-redux/.idea
+.idea
+npm-debug.log
