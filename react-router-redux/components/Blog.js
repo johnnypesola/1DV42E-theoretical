@@ -2,8 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { increase, decrease } from '../actions/count'
 
-function Home({ number, increase, decrease }) {
+function Blog({ number, increase, decrease }) {
   return (
+    <div>
+      Should be filled with blog posts
+    </div>
     <div>
       Some state changes:
       {number}
