@@ -4,13 +4,15 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware  } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { loadBlogPostsAction } from './actions/blog'
 
 import * as reducers from './reducers'
-import { App, Home, Foo, Bar } from './components'
+import { App, Blog, BlogPost, Bar } from './components'
 
 const reducer = combineReducers({
   ...reducers,
@@ -26,7 +28,8 @@ const DevTools = createDevTools(
 */
 
 const store = createStore(
-  reducer//,
+  reducer,
+  applyMiddleware(thunk)
   //DevTools.instrument()
 )
 const history = syncHistoryWithStore(browserHistory, store)
@@ -36,9 +39,8 @@ ReactDOM.render(
     <div>
       <Router history={history}>
         <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="foo" component={Foo}/>
-          <Route path="bar" component={Bar}/>
+          <IndexRoute component={Blog}/>
+          <Route path="post" component={BlogPost}/>
         </Route>
       </Router>
 
