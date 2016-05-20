@@ -27,53 +27,55 @@ function loadingChangedAction(isLoading) {
   }
 }
 
-export function loadBlogPostsAction() {
+export default {
+  loadBlogPostsAction: () => {
+    return (dispatch, getState) => {
+      var state = getState();
+      var url = BLOG_POSTS_1000_URL;
+      dispatch(loadingChangedAction(true));
 
-  return function(dispatch, getState) {
-    var state = getState();
-    var url = BLOG_POSTS_1000_URL;
-    dispatch(loadingChangedAction(true));
+      return fetch(url)
+        .then(function(result) {
+          dispatch(loadingChangedAction(false));
 
-    return fetch(url)
-      .then(function(result) {
-        dispatch(loadingChangedAction(false));
+          if (result.status === 200) {
+            return result.json();
+          }
 
-        if (result.status === 200) {
-          return result.json();
-        }
+          throw "request failed";
+        })
+        .then(function(jsonResult) {
+          dispatch(addBlogPostsAction(jsonResult));
+        })
+        .catch(function(err) {
+          alert("Couldn't get blog posts");
+        });
+    }
+  },
 
-        throw "request failed";
-      })
-      .then(function(jsonResult) {
-        dispatch(addBlogPostsAction(jsonResult));
-      })
-      .catch(function(err) {
-        alert("Couldn't get blog posts");
-      });
-  }
-}
+  loadBlogPostAction: () => {
 
-export function loadBlogPostAction() {
-  return function(dispatch, getState) {
-    var state = getState();
-    var url = BLOG_POSTS_1_URL;
-    dispatch(loadingChangedAction(true));
+    return function(dispatch, getState) {
+      var state = getState();
+      var url = BLOG_POSTS_1_URL;
+      dispatch(loadingChangedAction(true));
 
-    return fetch(url)
-      .then(function(result) {
-        dispatch(loadingChangedAction(false));
+      return fetch(url)
+        .then(function(result) {
+          dispatch(loadingChangedAction(false));
 
-        if (result.status === 200) {
-          return result.json();
-        }
+          if (result.status === 200) {
+            return result.json();
+          }
 
-        throw "request failed";
-      })
-      .then(function(jsonResult) {
-        dispatch(addBlogPostsAction(jsonResult));
-      })
-      .catch(function(err) {
-        alert("Couldn't get blog post");
-      });
+          throw "request failed";
+        })
+        .then(function(jsonResult) {
+          dispatch(addBlogPostsAction(jsonResult));
+        })
+        .catch(function(err) {
+          alert("Couldn't get blog post");
+        });
+    }
   }
 }

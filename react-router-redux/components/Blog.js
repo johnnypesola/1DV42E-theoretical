@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loadBlogPostsAction, loadBlogPostAction } from '../actions/blog'
+import BlogActions from '../actions/blog'
 import { increase } from '../actions/count'
 
 class Blog extends React.Component {
@@ -14,10 +14,28 @@ class Blog extends React.Component {
 
   componentWillMount() {
 
-    console.log( this.props.loadBlogPosts )
+    // console.log( 'increase', increase )
 
-    this.props.loadBlogPosts()
+    // console.log( 'BlogActions', BlogActions )
+
+    //console.log( this.props.loadBlogPosts )
+
+    // BlogActions.loadBlogPostsAction()
+    //
+    //
+
+    // console.log ( this.props.loadBlogPosts )
+    // this.props.loadBlogPosts();
   }
+
+  componentDidMount() {
+    const { dispatch, selectedReddit } = this.props
+
+    console.log( dispatch )
+
+    // dispatch(fetchPostsIfNeeded(selectedReddit))
+  }
+
 
   renderBlogPost( post ) {
 
@@ -34,10 +52,9 @@ class Blog extends React.Component {
     )
   }
 
-
   render() {
 
-    console.log( 'this.props.posts', this.props.posts )
+    // console.log( 'this.props.posts', this.props.posts )
 
     return (
 
@@ -61,8 +78,8 @@ export default connect(
   },
   function mapDispatchToProps(dispatch) {
     return {
-      loadBlogPosts: () => { dispatch( loadBlogPostsAction() ) },
-      loadBlogPost: () => { dispatch( loadBlogPostAction() ) }
+      loadBlogPosts: () => { dispatch( BlogActions.loadBlogPostsAction() ) },
+      loadBlogPost: () => { dispatch( BlogActions.loadBlogPostAction() ) }
     };
   }
 )(Blog)
