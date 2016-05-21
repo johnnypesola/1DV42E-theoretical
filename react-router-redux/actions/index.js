@@ -81,9 +81,10 @@ function requestBlogPosts() {
 }
 
 function receiveBlogPosts( json ) {
+
   return {
     type: RECEIVE_BLOG_POSTS,
-    blogPosts: json.data.children.map(child => child.data),
+    blogPosts: json,
     receivedAt: Date.now()
   }
 }
@@ -91,7 +92,7 @@ function receiveBlogPosts( json ) {
 function fetchBlogPosts( ) {
   return dispatch => {
     dispatch( requestBlogPosts() )
-    return fetch( 'http://pesola.local.se/temp/data/1000-blog-posts.json' )
+    return fetch( 'http://pesola.local.se/temp/theoretical-temp/data/1000-blog-posts.json' )
       .then( response => response.json() )
       .then( json => dispatch( receiveBlogPosts( json ) ) )
   }
@@ -99,13 +100,19 @@ function fetchBlogPosts( ) {
 
 function shouldFetchBlogPosts( state ) {
 
+  console.log( 'shouldFetchBlogPosts', state.reducer.blogPosts )
+
   const posts = state.reducer.blogPosts
-  if (!posts) {
+  if (!posts || posts.items.length === 0 ) {
+    console.log( 'true' )
     return true
   }
   if (posts.isFetching) {
+    console.log( 'false' )
     return false
   }
+
+  console.log( 'neither' )
   return posts.didInvalidate
 }
 
@@ -137,7 +144,7 @@ function receiveBlogPost( json ) {
 export function fetchBlogPost( ) {
   return dispatch => {
     dispatch( requestBlogPost() )
-    return fetch( 'http://pesola.local.se/temp/data/1-blog-posts.json' )
+    return fetch( 'http://pesola.local.se/temp/theoretical-temp/data/1-blog-posts.json' )
       .then( response => response.json() )
       .then( json => dispatch( receiveBlogPost( json ) ) )
   }

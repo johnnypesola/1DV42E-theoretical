@@ -1,51 +1,100 @@
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from './actions'
+import { Link } from 'react-router'
+import Picker from './components/Picker'
+import Posts from './components/Posts'
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore, combineReducers, applyMiddleware  } from 'redux'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import BlogActions from './actions/blog'
-import * as reducers from './reducers'
-import { App, Blog, BlogPost, Bar } from './components'
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleRefreshClick = this.handleRefreshClick.bind(this)
+  }
 
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-})
+  componentDidMount() {
+    const { dispatch, selectedReddit } = this.props
+    dispatch(fetchPostsIfNeeded(selectedReddit))
+  }
 
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedReddit !== this.props.selectedReddit) {
+      const { dispatch, selectedReddit } = nextProps
+      dispatch(fetchPostsIfNeeded(selectedReddit))
+    }
+  }
 
-const store = createStore(
-  reducer,
-  applyMiddleware(thunk),
-  DevTools.instrument()
-)
-const history = syncHistoryWithStore(browserHistory, store)
+  handleChange(nextReddit) {
+    this.props.dispatch(selectReddit(nextReddit))
+  }
 
-// store.dispatch( BlogActions.loadBlogPostsAction('whyyyy') )
+  handleRefreshClick(e) {
+    e.preventDefault()
 
-ReactDOM.render(
-  <Provider store={store}>
-    <div>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Blog}/>
-          <Route path="post" component={BlogPost}/>
-        </Route>
-      </Router>
-      <DevTools />
-    </div>
-  </Provider>,
-  document.getElementById('mount')
-)
+    const { dispatch, selectedReddit } = this.props
+    dispatch(invalidateReddit(selectedReddit))
+    dispatch(fetchPostsIfNeeded(selectedReddit))
+  }
 
-// Add to empy line above for devtools: <DevTools />
+  render() {
+    const { selectedReddit, posts, isFetching, lastUpdated } = this.props
+    const isEmpty = posts.length === 0
+    return (
+      <div>
+        <Picker value={selectedReddit}
+                onChange={this.handleChange}
+                options={[ 'reactjs', 'frontend' ]} />
+        <p>
+          {lastUpdated &&
+            <span>
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+              {' '}
+            </span>
+          }
+          {!isFetching &&
+            <a href="#"
+               onClick={this.handleRefreshClick}>
+              Refresh
+            </a>
+          }
+        </p>
+        {isEmpty
+          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+              <Posts posts={posts} />
+            </div>
+        }
+      </div>
+    )
+  }
+}
+
+App.propTypes = {
+  selectedReddit: PropTypes.string.isRequired,
+  posts: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+
+  const { selectedReddit, postsByReddit } = state
+  const {
+    isFetching,
+    lastUpdated,
+    items: posts
+  } = postsByReddit[selectedReddit] || {
+    isFetching: true,
+    items: []
+  }
+
+  return {
+    selectedReddit,
+    posts,
+    isFetching,
+    lastUpdated
+  }
+}
+
+export default connect(mapStateToProps)(App)

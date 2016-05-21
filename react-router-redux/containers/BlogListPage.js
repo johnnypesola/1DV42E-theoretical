@@ -5,35 +5,38 @@ import { fetchBlogPostsIfNeeded } from '../actions'
 
 class BlogListPage extends Component {
   
-  renderBlogPostRow( post ) {
+  renderBlogPostRow( post, index ) {
 
     return (
-      <BlogListPost post={ post } />
+      <BlogListPost key={ index } post={ post } />
     )
   }
 
   componentDidMount() {
 
-    console.log( 'componentDidMount', this.props )
+    console.log( 'componentDidMount', 'BlogListPage' )
 
-    const { dispatch, selectedReddit } = this.props
+    const { dispatch } = this.props
     dispatch( fetchBlogPostsIfNeeded() )
   }
 
+  /*
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedReddit !== this.props.selectedReddit) {
+    if ( nextProps.selectedReddit !== this.props.selectedReddit ) {
       const { dispatch, selectedReddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedReddit))
+      dispatch( fetchPostsIfNeeded( selectedReddit ) )
     }
   }
+  */
 
   render() {
-    const {
-      isFetching, posts
-    } = this.props
+    const { isFetching, posts } = this.props
 
     return (
       <div>
+
+        <h1>Welcome to this testblog</h1>
+
         { posts.map( this.renderBlogPostRow ) }
       </div>
     )
@@ -51,14 +54,10 @@ BlogListPage.defaultProps = {
 
 function mapStateToProps( state )  {
 
-  console.log( 'state', state )
   const { reducer } = state
 
-  const { BlogPosts } = reducer
-  const posts = BlogPosts || []
-
   return {
-    posts
+    posts: reducer.blogPosts.items
   }
 }
 

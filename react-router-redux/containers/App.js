@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from './actions'
+import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
+import Picker from '../components/Picker'
+import Posts from '../components/Posts'
 import { Link } from 'react-router'
-import Picker from './components/Picker'
-import Posts from './components/Posts'
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +13,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    console.log( 'componentDidMount', this.props )
+
     const { dispatch, selectedReddit } = this.props
     dispatch(fetchPostsIfNeeded(selectedReddit))
   }
@@ -41,6 +44,9 @@ class App extends Component {
     const isEmpty = posts.length === 0
     return (
       <div>
+
+        <Link to="/post">Post</Link>
+
         <Picker value={selectedReddit}
                 onChange={this.handleChange}
                 options={[ 'reactjs', 'frontend' ]} />
@@ -77,9 +83,12 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
 
-  const { selectedReddit, postsByReddit } = state
+function mapStateToProps( state ) {
+
+  const { reducer } = state
+
+  const { selectedReddit, postsByReddit } = reducer
   const {
     isFetching,
     lastUpdated,
@@ -96,5 +105,6 @@ function mapStateToProps(state) {
     lastUpdated
   }
 }
+
 
 export default connect(mapStateToProps)(App)

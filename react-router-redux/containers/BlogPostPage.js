@@ -5,14 +5,11 @@ import { fetchBlogPost } from '../actions'
 
 export default class BlogPostPage extends Component {
 
-  constructor(props) {
-    super(props)
-    console.log( 'BlogPostPage constructor' )
+  constructor( props ) {
+    super( props )
   }
 
   componentDidMount() {
-
-    console.log( 'componentDidMount', this.props )
 
     const { dispatch } = this.props
     dispatch( fetchBlogPost() )
@@ -20,18 +17,21 @@ export default class BlogPostPage extends Component {
 
   renderBlogPostRow( post ) {
 
-    if( post ) {
+    const { history } = this.props
+
+    if( post && post.content ) {
 
       return (
-        <BlogPost post={ post } />
+        <BlogPost
+          key={ post.id } post={ post }
+          history={ history }
+        />
       )
     }
   }
 
   render() {
-    const {
-      isFetching, post
-    } = this.props
+    const { post } = this.props
 
     return (
       <div>
@@ -43,7 +43,8 @@ export default class BlogPostPage extends Component {
 }
 
 BlogPostPage.propTypes = {
-  posts: PropTypes.array.isRequired,
+
+  // post: PropTypes.object,
   isFetching: PropTypes.bool
 }
 
