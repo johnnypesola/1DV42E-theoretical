@@ -5,6 +5,9 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
+export const REQUEST_BLOG_POSTS = 'REQUEST_POSTS'
+export const RECEIVE_BLOG_POSTS = 'RECEIVE_POSTS'
+
 export function selectReddit(reddit) {
   return {
     type: SELECT_REDDIT,
@@ -46,9 +49,6 @@ function fetchPosts(reddit) {
 
 function shouldFetchPosts(state, reddit) {
 
-  console.log( 'state YEAH', state.reducer )
-  console.log( 'reddit', reddit )
-
   const posts = state.reducer.postsByReddit[reddit]
   if (!posts) {
     return true
@@ -62,12 +62,57 @@ function shouldFetchPosts(state, reddit) {
 export function fetchPostsIfNeeded(reddit) {
   return (dispatch, getState) => {
 
-    console.log( 'dispatch', dispatch )
-
-    console.log( 'getState', getState )
-
     if (shouldFetchPosts(getState(), reddit)) {
       return dispatch(fetchPosts(reddit))
+    }
+  }
+}
+
+
+////
+
+function requestBlogPosts(reddit) {
+  return {
+    type: REQUEST_BLOG_POSTS,
+    reddit
+  }
+}
+
+function receiveBlogPosts(reddit, json) {
+  return {
+    type: RECEIVE_BLOG_POSTS,
+    reddit,
+    blogPosts: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
+  }
+}
+
+function fetchBlogPosts( reddit ) {
+  return dispatch => {
+    dispatch( requestBlogPosts( reddit ) )
+    return fetch( 'data/1000-blog-posts.json' )
+      .then( response => response.json() )
+      .then( json => dispatch( receiveBlogPosts( reddit, json ) ) )
+  }
+}
+
+function shouldFetchBlogPosts( state, reddit ) {
+
+  const posts = state.reducer.postsByReddit[reddit]
+  if (!posts) {
+    return true
+  }
+  if (posts.isFetching) {
+    return false
+  }
+  return posts.didInvalidate
+}
+
+export function fetchBlogPostsIfNeeded(reddit) {
+  return (dispatch, getState) => {
+
+    if ( shouldFetchBlogPosts( getState(), reddit ) ) {
+      return dispatch( fetchBlogPosts(reddit) )
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from './actions'
+import { Link } from 'react-router'
 import Picker from './components/Picker'
 import Posts from './components/Posts'
 

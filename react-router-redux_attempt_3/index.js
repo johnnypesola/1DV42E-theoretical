@@ -16,10 +16,9 @@ console.log( store, history )
 render(
   <Provider store={ store }>
     <Router history={ history }>
-      <Route path="/" component={ App }>
-        <IndexRoute component={ App }/>
-        <Route path="post" component={ BlogPostPage }/>
-      </Route>
+      <Route path="/" component={ App } />
+      <Route path="post" component={ BlogPostPage }/>
+
     </Router>
   </Provider>,
   document.getElementById('root')

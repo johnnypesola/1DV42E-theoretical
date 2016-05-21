@@ -4,6 +4,8 @@ import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
+import { Link } from 'react-router'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -43,6 +45,11 @@ class App extends Component {
     const isEmpty = posts.length === 0
     return (
       <div>
+
+        <Link to="/post">Post</Link>
+
+        Hellooo?
+
         <Picker value={selectedReddit}
                 onChange={this.handleChange}
                 options={[ 'reactjs', 'frontend' ]} />
@@ -80,9 +87,8 @@ App.propTypes = {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps( state ) {
 
-  console.log( 'state', state )
   const { reducer } = state
 
   const { selectedReddit, postsByReddit } = reducer

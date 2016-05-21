@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import BlogListPost from '../components/BlogListPost'
 
-export default class BlogPostPage extends Component {
-
+class BlogListPage extends Component {
+  
   renderBlogPostRow( post ) {
 
     return (
@@ -23,11 +24,26 @@ export default class BlogPostPage extends Component {
   }
 }
 
-BlogPostPage.propTypes = {
-  posts: PropTypes.array.isRequired,
+BlogListPage.propTypes = {
+  posts: PropTypes.array,
   isFetching: PropTypes.bool
 }
 
-BlogPostPage.defaultProps = {
+BlogListPage.defaultProps = {
 
 }
+
+function mapStateToProps( state )  {
+
+  console.log( 'state', state )
+  const { reducer } = state
+
+  const { BlogPosts } = reducer
+  const posts = BlogPosts || []
+
+  return {
+    posts
+  }
+}
+
+export default connect( mapStateToProps )( BlogListPage )
