@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import BlogPost from '../components/BlogPost'
+import { fetchBlogPost } from '../actions'
 
 export default class BlogPostPage extends Component {
 
@@ -9,23 +10,33 @@ export default class BlogPostPage extends Component {
     console.log( 'BlogPostPage constructor' )
   }
 
+  componentDidMount() {
+
+    console.log( 'componentDidMount', this.props )
+
+    const { dispatch } = this.props
+    dispatch( fetchBlogPost() )
+  }
 
   renderBlogPostRow( post ) {
 
-    return (
-      <BlogPost post={ post } />
-    )
+    if( post ) {
+
+      return (
+        <BlogPost post={ post } />
+      )
+    }
   }
 
   render() {
     const {
-      isFetching, posts
+      isFetching, post
     } = this.props
 
     return (
       <div>
         fisk
-        { posts.map( this.renderBlogPostRow ) }
+        { this.renderBlogPostRow( post ) }
       </div>
     )
   }
@@ -42,14 +53,10 @@ BlogPostPage.defaultProps = {
 
 function mapStateToProps( state )  {
 
-  console.log( 'state', state )
   const { reducer } = state
 
-  const { BlogPosts } = reducer
-  const posts = BlogPosts || []
-
   return {
-    posts
+    post: reducer.blogPosts.item
   }
 }
 

@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS,
-  REQUEST_BLOG_POSTS, RECEIVE_BLOG_POSTS
+  REQUEST_BLOG_POSTS, RECEIVE_BLOG_POSTS,
+  RECEIVE_BLOG_POST
 } from '../actions'
 
 function selectedReddit(state = 'reactjs', action) {
@@ -57,19 +58,24 @@ function postsByReddit(state = { }, action) {
 // 
 
 function blogPosts(state = {
+  isFetching: false,
   items: []
 }, action) {
   switch (action.type) {
     case REQUEST_BLOG_POSTS:
       return Object.assign({}, state, {
-        isFetching: true,
-        didInvalidate: false
+        isFetching: true
       })
     case RECEIVE_BLOG_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
         items: action.blogPosts,
+        lastUpdated: action.receivedAt
+      })
+    case RECEIVE_BLOG_POST:
+      return Object.assign({}, state, {
+        isFetching: false,
+        item: action.blogPost,
         lastUpdated: action.receivedAt
       })
     default:
@@ -79,7 +85,8 @@ function blogPosts(state = {
 
 const rootReducer = combineReducers({
   postsByReddit,
-  selectedReddit
+  selectedReddit,
+  blogPosts
 })
 
 export default rootReducer

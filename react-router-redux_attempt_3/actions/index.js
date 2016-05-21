@@ -5,8 +5,11 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
-export const REQUEST_BLOG_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_BLOG_POSTS = 'RECEIVE_POSTS'
+export const REQUEST_BLOG_POSTS = 'REQUEST_BLOG_POSTS'
+export const RECEIVE_BLOG_POSTS = 'RECEIVE_BLOG_POSTS'
+
+export const REQUEST_BLOG_POST = 'REQUEST_BLOG_POST'
+export const RECEIVE_BLOG_POST = 'RECEIVE_BLOG_POST'
 
 export function selectReddit(reddit) {
   return {
@@ -69,36 +72,34 @@ export function fetchPostsIfNeeded(reddit) {
 }
 
 
-////
+// Blog posts actions
 
-function requestBlogPosts(reddit) {
+function requestBlogPosts() {
   return {
-    type: REQUEST_BLOG_POSTS,
-    reddit
+    type: REQUEST_BLOG_POSTS
   }
 }
 
-function receiveBlogPosts(reddit, json) {
+function receiveBlogPosts( json ) {
   return {
     type: RECEIVE_BLOG_POSTS,
-    reddit,
     blogPosts: json.data.children.map(child => child.data),
     receivedAt: Date.now()
   }
 }
 
-function fetchBlogPosts( reddit ) {
+function fetchBlogPosts( ) {
   return dispatch => {
-    dispatch( requestBlogPosts( reddit ) )
-    return fetch( 'data/1000-blog-posts.json' )
+    dispatch( requestBlogPosts() )
+    return fetch( 'http://pesola.local.se/temp/data/1000-blog-posts.json' )
       .then( response => response.json() )
-      .then( json => dispatch( receiveBlogPosts( reddit, json ) ) )
+      .then( json => dispatch( receiveBlogPosts( json ) ) )
   }
 }
 
-function shouldFetchBlogPosts( state, reddit ) {
+function shouldFetchBlogPosts( state ) {
 
-  const posts = state.reducer.postsByReddit[reddit]
+  const posts = state.reducer.blogPosts
   if (!posts) {
     return true
   }
@@ -108,11 +109,36 @@ function shouldFetchBlogPosts( state, reddit ) {
   return posts.didInvalidate
 }
 
-export function fetchBlogPostsIfNeeded(reddit) {
+export function fetchBlogPostsIfNeeded() {
   return (dispatch, getState) => {
 
-    if ( shouldFetchBlogPosts( getState(), reddit ) ) {
-      return dispatch( fetchBlogPosts(reddit) )
+    if ( shouldFetchBlogPosts( getState() ) ) {
+      return dispatch( fetchBlogPosts() )
     }
+  }
+}
+
+// Blog post actions
+
+function requestBlogPost() {
+  return {
+    type: REQUEST_BLOG_POST
+  }
+}
+
+function receiveBlogPost( json ) {
+  return {
+    type: RECEIVE_BLOG_POST,
+    blogPost: json,
+    receivedAt: Date.now()
+  }
+}
+
+export function fetchBlogPost( ) {
+  return dispatch => {
+    dispatch( requestBlogPost() )
+    return fetch( 'http://pesola.local.se/temp/data/1-blog-posts.json' )
+      .then( response => response.json() )
+      .then( json => dispatch( receiveBlogPost( json ) ) )
   }
 }

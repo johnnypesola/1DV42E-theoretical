@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import BlogListPost from '../components/BlogListPost'
+import { fetchBlogPostsIfNeeded } from '../actions'
 
 class BlogListPage extends Component {
   
@@ -9,6 +10,21 @@ class BlogListPage extends Component {
     return (
       <BlogListPost post={ post } />
     )
+  }
+
+  componentDidMount() {
+
+    console.log( 'componentDidMount', this.props )
+
+    const { dispatch, selectedReddit } = this.props
+    dispatch( fetchBlogPostsIfNeeded() )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedReddit !== this.props.selectedReddit) {
+      const { dispatch, selectedReddit } = nextProps
+      dispatch(fetchPostsIfNeeded(selectedReddit))
+    }
   }
 
   render() {
