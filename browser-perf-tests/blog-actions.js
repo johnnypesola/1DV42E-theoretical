@@ -7,23 +7,32 @@ module.exports = function() {
 
     var MS_BETWEEN_PAGES = 5000
 
+    // Sleep a little, load page.
     return browser.sleep( MS_BETWEEN_PAGES )
-    .then( function() {
-      console.log( 'get link to post' )
 
+    // Get link to blog post page
+    .then( function() {
       return  browser.elementById( 'post1-link' )
     })
+
+    // Click on link and sleep
     .then( function ( elem ) {
       elem.click();
       return browser.sleep( MS_BETWEEN_PAGES )
     })
+
+    // Get link back to index page
     .then( function ( ) {
       return browser.elementById( 'back' );
     })
+
+    // Click on link and sleep
     .then( function ( elem ) {
       elem.click()
       return browser.sleep( MS_BETWEEN_PAGES )
     })
+
+    // And we are done
     .then( function () {
       browser.fin( function(){
 

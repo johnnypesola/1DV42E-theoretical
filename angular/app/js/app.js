@@ -21,10 +21,20 @@ AngularVSReact.config(['$routeProvider',
 
 AngularVSReact.controller('BlogCtrl', ['$scope', 'BlogPost', function($scope, BlogPost) {
     $scope.posts = BlogPost.query();
+
+    // Public functions
+    $scope.removeBlogPost = function( index ){
+
+      $scope.posts.splice( index, 1 );
+    };
+
+    $scope.removeLastBlogPost = function( post ){
+
+      $scope.posts.pop();
+    };
+
 }]);
 
 AngularVSReact.controller('BlogPostCtrl', ['$scope', 'BlogPost', function($scope, BlogPost) {
       $scope.post = BlogPost.get();
-
-      console.log( $scope.post );
 }]);
