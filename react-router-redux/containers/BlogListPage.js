@@ -4,7 +4,11 @@ import BlogListPost from '../components/BlogListPost'
 import { fetchBlogPostsIfNeeded } from '../actions'
 
 class BlogListPage extends Component {
-  
+
+  constructor( props, context ) {
+    super( props, context )
+  }
+
   renderBlogPostRow( post, index ) {
 
     return (
@@ -13,8 +17,6 @@ class BlogListPage extends Component {
   }
 
   componentDidMount() {
-
-    console.log( 'componentDidMount', 'BlogListPage' )
 
     const { dispatch } = this.props
     dispatch( fetchBlogPostsIfNeeded() )
@@ -34,9 +36,6 @@ class BlogListPage extends Component {
 
     return (
       <div>
-
-        <h1>Welcome to this testblog</h1>
-
         { posts.map( this.renderBlogPostRow ) }
       </div>
     )
@@ -48,16 +47,10 @@ BlogListPage.propTypes = {
   isFetching: PropTypes.bool
 }
 
-BlogListPage.defaultProps = {
-
-}
-
 function mapStateToProps( state )  {
 
-  const { reducer } = state
-
   return {
-    posts: reducer.blogPosts.items
+    posts: state.reducer.blogPosts.items
   }
 }
 

@@ -9,11 +9,17 @@ const reducer = combineReducers({
   routing: routerReducer
 })
 
-export default function configureStore(initialState) {
-  const store = createStore(
+
+export default function configureStore( initialState ) {
+
+  let store
+
+  // Exclude dev tools in case we are building production
+  
+  store = createStore(
     reducer,
     initialState,
-    applyMiddleware(thunkMiddleware, createLogger())
+    applyMiddleware( thunkMiddleware ) // createLogger()
   )
 
   if (module.hot) {

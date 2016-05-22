@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
+import { Link, withRouter } from 'react-router'
 
-export default class BlogListPost extends Component {
+class BlogListPost extends Component {
+
+  constructor( props, context ) {
+    super( props, context )
+  }
 
   pad( num, size ) {
     var s = num+"";
@@ -34,7 +38,7 @@ export default class BlogListPost extends Component {
         <p>
           { post.content }
         </p>
-        <img width="50" src={ 'app/img/' + post.picture } alt={ post.name } /> { post.name } @ { this.renderTime( post.timestamp ) }
+        <img width="50" src={ 'img/' + post.picture } alt={ post.name } /> { post.name } @ { this.renderTime( post.timestamp ) }
       </div>
     )
   }
@@ -44,6 +48,4 @@ BlogListPost.propTypes = {
   post: PropTypes.object.isRequired
 }
 
-BlogListPost.defaultProps = {
-
-}
+export default withRouter( BlogListPost )

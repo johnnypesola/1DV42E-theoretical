@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import { withRouter } from 'react-router'
 
-export default class BlogPost extends Component {
+class BlogPost extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor( props, context ) {
+    super( props, context )
 
     // Bind 'this' to 'this' in class methods, if they are called within jsx code
     this.goBack = this.goBack.bind(this)
@@ -19,9 +20,9 @@ export default class BlogPost extends Component {
 
   goBack() {
 
-    const { history } = this.props
+    const { router } = this.props
 
-    history.goBack();
+    router.goBack();
   }
 
   pad( num, size ) {
@@ -63,7 +64,7 @@ export default class BlogPost extends Component {
           <h3>
             Author
           </h3>
-          <img width="50" src={ 'app/img/' + post.picture } alt={ post.name } /> { post.name }<br />
+          <img width="50" src={ 'img/' + post.picture } alt={ post.name } /> { post.name }<br />
           Email: { post.email }<br />
 
           <h3>Tags</h3>
@@ -82,6 +83,4 @@ BlogPost.propTypes = {
   history: PropTypes.object.isRequired
 }
 
-BlogPost.defaultProps = {
-
-}
+export default withRouter( BlogPost )

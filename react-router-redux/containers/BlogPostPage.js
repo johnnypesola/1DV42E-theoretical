@@ -5,8 +5,8 @@ import { fetchBlogPost } from '../actions'
 
 export default class BlogPostPage extends Component {
 
-  constructor( props ) {
-    super( props )
+  constructor( props, context ) {
+    super( props, context )
   }
 
   componentDidMount() {
@@ -31,11 +31,11 @@ export default class BlogPostPage extends Component {
   }
 
   render() {
+
     const { post } = this.props
 
     return (
       <div>
-        fisk
         { this.renderBlogPostRow( post ) }
       </div>
     )
@@ -44,20 +44,14 @@ export default class BlogPostPage extends Component {
 
 BlogPostPage.propTypes = {
 
-  // post: PropTypes.object,
+  post: PropTypes.object,
   isFetching: PropTypes.bool
-}
-
-BlogPostPage.defaultProps = {
-
 }
 
 function mapStateToProps( state )  {
 
-  const { reducer } = state
-
   return {
-    post: reducer.blogPosts.item
+    post: state.reducer.blogPosts.item
   }
 }
 

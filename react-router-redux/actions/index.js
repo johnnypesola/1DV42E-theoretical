@@ -1,76 +1,18 @@
 import fetch from 'isomorphic-fetch'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
-
 export const REQUEST_BLOG_POSTS = 'REQUEST_BLOG_POSTS'
 export const RECEIVE_BLOG_POSTS = 'RECEIVE_BLOG_POSTS'
-
 export const REQUEST_BLOG_POST = 'REQUEST_BLOG_POST'
 export const RECEIVE_BLOG_POST = 'RECEIVE_BLOG_POST'
 
-export function selectReddit(reddit) {
-  return {
-    type: SELECT_REDDIT,
-    reddit
-  }
-}
 
-export function invalidateReddit(reddit) {
-  return {
-    type: INVALIDATE_REDDIT,
-    reddit
-  }
-}
-
-function requestPosts(reddit) {
-  return {
-    type: REQUEST_POSTS,
-    reddit
-  }
-}
-
-function receivePosts(reddit, json) {
-  return {
-    type: RECEIVE_POSTS,
-    reddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
-}
-
-function fetchPosts(reddit) {
-  return dispatch => {
-    dispatch(requestPosts(reddit))
-    return fetch(`https://www.reddit.com/r/${reddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(reddit, json)))
-  }
-}
-
-function shouldFetchPosts(state, reddit) {
-
-  const posts = state.reducer.postsByReddit[reddit]
-  if (!posts) {
-    return true
-  }
-  if (posts.isFetching) {
-    return false
-  }
-  return posts.didInvalidate
-}
-
-export function fetchPostsIfNeeded(reddit) {
-  return (dispatch, getState) => {
-
-    if (shouldFetchPosts(getState(), reddit)) {
-      return dispatch(fetchPosts(reddit))
-    }
-  }
-}
-
+// Test Data constants
+const DATA_PATH = 'data/' // http://pesola.local.se/temp/theoretical-temp/data/
+const BLOG_POSTS_1000_URL = DATA_PATH + '1000-blog-posts.json'
+const BLOG_POSTS_500_URL = DATA_PATH + '500-blog-posts.json'
+const BLOG_POSTS_100_URL = DATA_PATH + '100-blog-posts.json'
+const BLOG_POSTS_10_URL = DATA_PATH + '10-blog-posts.json'
+const BLOG_POSTS_1_URL = DATA_PATH + '1-blog-posts.json'
 
 // Blog posts actions
 
@@ -92,7 +34,7 @@ function receiveBlogPosts( json ) {
 function fetchBlogPosts( ) {
   return dispatch => {
     dispatch( requestBlogPosts() )
-    return fetch( 'http://pesola.local.se/temp/theoretical-temp/data/1000-blog-posts.json' )
+    return fetch( BLOG_POSTS_1000_URL )
       .then( response => response.json() )
       .then( json => dispatch( receiveBlogPosts( json ) ) )
   }
@@ -100,20 +42,11 @@ function fetchBlogPosts( ) {
 
 function shouldFetchBlogPosts( state ) {
 
-  console.log( 'shouldFetchBlogPosts', state.reducer.blogPosts )
-
   const posts = state.reducer.blogPosts
-  if (!posts || posts.items.length === 0 ) {
-    console.log( 'true' )
-    return true
-  }
-  if (posts.isFetching) {
-    console.log( 'false' )
-    return false
-  }
 
-  console.log( 'neither' )
-  return posts.didInvalidate
+  // Return true if there are no posts and we are not fetching posts at the moment.
+  return (!posts || posts.items.length === 0 || posts && !posts.isFetching )
+
 }
 
 export function fetchBlogPostsIfNeeded() {
@@ -144,7 +77,7 @@ function receiveBlogPost( json ) {
 export function fetchBlogPost( ) {
   return dispatch => {
     dispatch( requestBlogPost() )
-    return fetch( 'http://pesola.local.se/temp/theoretical-temp/data/1-blog-posts.json' )
+    return fetch( BLOG_POSTS_1_URL )
       .then( response => response.json() )
       .then( json => dispatch( receiveBlogPost( json ) ) )
   }

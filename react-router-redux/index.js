@@ -5,14 +5,11 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore'
-import App from './containers/App'
 import BlogPostPage from './containers/BlogPostPage'
 import BlogListPage from './containers/BlogListPage'
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
-
-console.log( store, history )
 
 render(
   <Provider store={ store }>
