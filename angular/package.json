@@ -1,5 +1,5 @@
 {
-  "name": "angular-vs-react",
+  "name": "angular-vs-react-router-redux",
   "version": "1.0.0",
   "description": "A simple blog to be performance tested agains react-redux",
   "main": "index.js",

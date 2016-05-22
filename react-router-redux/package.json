@@ -1,7 +1,7 @@
 {
-  "name": "redux-async-example",
-  "version": "0.0.0",
-  "description": "Redux async example",
+  "name": "angular-vs-react-router-redux",
+  "version": "1.0.0",
+  "description": "A simple blog to be performance tested agains angular 1",
   "scripts": {
     "prestart": "npm install",
     "start": "http-server -a 0.0.0.0 -p 8000",
