@@ -6,6 +6,7 @@
 // Require dependencies
 var browserPerf = require('browser-perf');
 var fs = require('fs');
+var blogActions = require( './blog-actions.js' );
 
 // Settings
 var URLS = {
@@ -14,10 +15,12 @@ var URLS = {
 }
 var FRAMEWORKS = Object.keys( URLS );
 var OUT_FILE = 'data.json';
-var TIMES_TO_REPEAT_TEST = 10;
+var TIMES_TO_REPEAT_TEST = 1;
+
 var BROWSER_PERF_OPTIONS = {
   selenium: 'http://localhost:4444/wd/hub',
-  browsers: ['chrome']
+  browsers: ['chrome'],
+  actions: [ blogActions() ]
 }
 
 // Write file if needed

@@ -12,7 +12,7 @@ class BlogListPage extends Component {
   renderBlogPostRow( post, index ) {
 
     return (
-      <BlogListPost key={ index } post={ post } />
+      <BlogListPost key={ index } post={ post } id={ 'post' + index + '-link' } />
     )
   }
 

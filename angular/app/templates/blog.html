@@ -1,6 +1,6 @@
 <div ng-repeat="post in posts">
   <h3>
-    <a href="#/post/1">{{post.header}}</a>
+    <a href="#/post/1" id="post{{$index }}-link">{{post.header}}</a>
   </h3>
   <p>
     {{post.content}}

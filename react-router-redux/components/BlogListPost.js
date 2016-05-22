@@ -28,12 +28,12 @@ class BlogListPost extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, id } = this.props
 
     return (
       <div>
         <h3>
-          <Link to="/post">{ post.header }</Link>
+          <Link to="/post" id={ id }>{ post.header }</Link>
         </h3>
         <p>
           { post.content }
@@ -45,7 +45,8 @@ class BlogListPost extends Component {
 }
 
 BlogListPost.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired
 }
 
 export default withRouter( BlogListPost )

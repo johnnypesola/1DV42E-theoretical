@@ -72,7 +72,7 @@ class BlogPost extends Component {
             { post.tags.map( this.renderBlogPostTag ) }
           </ul>
 
-          <a href="#" onClick={ this.goBack }>Back</a>
+          <a href="#" onClick={ this.goBack } id="back">Back</a>
       </div>
     )
   }
