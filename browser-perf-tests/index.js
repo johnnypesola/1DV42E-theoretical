@@ -10,17 +10,37 @@ var blogActions = require( './blog-actions.js' );
 
 // Settings
 var URLS = {
-  react: 'http://localhost:8000/',
+  reactRouterRedux: 'http://localhost:8000/',
   angular: 'http://localhost:8001/'
 }
 var FRAMEWORKS = Object.keys( URLS );
 var OUT_FILE = 'data.json';
-var TIMES_TO_REPEAT_TEST = 1;
+var TIMES_TO_REPEAT_TEST = 10;
+var WINDOW_HEIGHT = 768
+var WINDOW_WIDTH = 1024
 
 var BROWSER_PERF_OPTIONS = {
   selenium: 'http://localhost:4444/wd/hub',
-  browsers: ['chrome'],
-  actions: [ blogActions() ]
+  browsers: [
+    {
+      browserName: 'chrome',
+      chromeOptions: {
+        args: [
+          '--window-size=' + WINDOW_WIDTH + ',' + WINDOW_HEIGHT,
+          '--window-position=0,0',
+          '--enable-memory-benchmarking',
+          '--enable-benchmarking',
+          '--memory-metrics'
+        ]
+      }
+    },
+    {
+      browserName: 'firefox'
+    }
+  ],
+  actions: [
+    blogActions()
+  ]
 }
 
 // Write file if needed
@@ -46,7 +66,7 @@ function repeatTest( framework, callBack ) {
     // Perform actual test
     browserPerf( URLS[framework], function( err, result ) {
 
-      var data
+      var data;
 
       // Output error if there was a error.
       if ( err ) {
@@ -66,15 +86,21 @@ function repeatTest( framework, callBack ) {
         // Loop through browserPerf test results
         result.forEach( function( res ) {
 
+          var browserName = res._browserName;
+
+          if( typeof data[framework][browserName] === 'undefined' ) {
+            data[framework][browserName] = {}
+          }
+
           for ( var metric in res ) {
 
             // Init metric array if needed
-            if ( typeof data[framework][metric] === 'undefined' ) {
-              data[framework][metric] = [];
+            if ( typeof data[framework][browserName][metric] === 'undefined' ) {
+              data[framework][browserName][metric] = [];
             }
 
             // Push metric data to data array
-            data[framework][metric].push( res[metric] );
+            data[framework][browserName][metric].push( res[metric] );
           }
         });
 

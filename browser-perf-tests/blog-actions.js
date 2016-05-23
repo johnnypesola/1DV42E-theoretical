@@ -74,14 +74,5 @@ module.exports = function() {
       elem.click()
       return browser.sleep( MS_BETWEEN_PAGES )
     })
-
-    // And we are done
-    .then( function () {
-      browser.fin( function(){
-
-        return browser.quit();
-      } )
-      .done();
-    })
   }
 };

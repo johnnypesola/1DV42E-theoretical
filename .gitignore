@@ -3,8 +3,6 @@ angular/.idea
 angular/.DS_Store
 angular/node_modules/
 angular/bower_components/
-angular/angular-phonecat/
-testing-software/
 react-router-redux/node_modules/
 react-router-redux_attempt_2/node_modules/
 react-router-redux_attempt_3/node_modules/
@@ -12,5 +10,4 @@ react-router-redux/.idea
 redux-examples/
 .idea
 npm-debug.log
-e1becd4ebf528cbf6bfa/
 browser-perf-tests/node_modules/
