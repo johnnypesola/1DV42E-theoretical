@@ -18,7 +18,6 @@ class BlogPostForm extends Component {
       email: 'sandrarodriquez@pasturia.com',
       picture: '5.jpg',
       name: 'Sandra Rodriquez',
-      timestamp: Date.now(),
       tags: [
       'new'
       ]
@@ -30,7 +29,7 @@ class BlogPostForm extends Component {
     const { dispatch } = this.props
     const { header, content, email, picture, name, timestamp, tags } = this.state
 
-    dispatch( addBlogPost( { header, content, email, picture, name, timestamp, tags } ) )
+    dispatch( addBlogPost( { header, content, email, picture, name, timestamp: Date.now(), tags } ) )
   }
 
   handleHeaderChange( event ) {
