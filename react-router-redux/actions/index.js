@@ -5,7 +5,7 @@ export const RECEIVE_BLOG_POSTS = 'RECEIVE_BLOG_POSTS'
 export const REQUEST_BLOG_POST = 'REQUEST_BLOG_POST'
 export const RECEIVE_BLOG_POST = 'RECEIVE_BLOG_POST'
 export const DELETE_BLOG_POST = 'DELETE_BLOG_POST'
-
+export const ADD_BLOG_POST = 'ADD_BLOG_POST'
 
 // Test Data constants
 const DATA_PATH = 'data/'
@@ -88,5 +88,12 @@ export function deleteBlogPost( index ) {
   return {
     type: DELETE_BLOG_POST,
     index: index
+  }
+}
+
+export function addBlogPost( item ) {
+  return {
+    type: ADD_BLOG_POST,
+    item: item
   }
 }

@@ -1,14 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import BlogListPost from '../components/BlogListPost'
+import BlogPostForm from '../components/BlogPostForm'
 import { fetchBlogPostsIfNeeded } from '../actions'
 
 class BlogListPage extends Component {
 
   constructor( props, context ) {
     super( props, context )
-
-    const { dispatch } = this.props
 
     // Bind 'this' to 'this' in class methods, if they are called within jsx code
     this.renderBlogPostRow = this.renderBlogPostRow.bind( this )
@@ -18,7 +17,7 @@ class BlogListPage extends Component {
 
     const { dispatch } = this.props
 
-    return (
+    return (       
       <BlogListPost
         key={ index }
         index={ index }
@@ -46,10 +45,13 @@ class BlogListPage extends Component {
 
   render() {
 
-    const { posts } = this.props
+    const { posts, dispatch } = this.props
 
     return (
+      
       <div>
+        <BlogPostForm dispatch={ dispatch } />
+        
         { posts.map( this.renderBlogPostRow ) }
       </div>
     )
