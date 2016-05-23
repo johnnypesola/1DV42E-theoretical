@@ -32,6 +32,17 @@ module.exports = function() {
       return browser.sleep( MS_BETWEEN_PAGES )
     })
 
+    // Get link to delete blog post
+    .then( function ( ) {
+        return browser.elementById( 'delete1-button' );
+    })
+
+    // Click on button and sleep
+    .then( function ( elem ) {
+        elem.click()
+        return browser.sleep( MS_BETWEEN_PAGES )
+    })
+
     // And we are done
     .then( function () {
       browser.fin( function(){

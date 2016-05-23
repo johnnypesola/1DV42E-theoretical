@@ -1,3 +1,17 @@
+<div>
+    <h3>New post</h3>
+    <p>
+        <label>Header</label><br>
+        <input title="Header" type="text" id="new-header" ng-model="newPost.header" />
+    </p>
+    <p>
+        <label>Content</label><br>
+        <textarea title="Content" id="new-content" ng-model="newPost.content" ></textarea>
+    </p>
+    <button id="new-submit" ng-click="addBlogPost( newPost )">Add blog post</button>
+
+</div>
+
 <div ng-repeat="post in posts">
   <h3>
     <a href="#/post/1" id="post{{$index }}-link">{{post.header}}</a>
