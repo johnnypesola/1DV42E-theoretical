@@ -7,12 +7,25 @@ class BlogListPage extends Component {
 
   constructor( props, context ) {
     super( props, context )
+
+    const { dispatch } = this.props
+
+    // Bind 'this' to 'this' in class methods, if they are called within jsx code
+    this.renderBlogPostRow = this.renderBlogPostRow.bind( this )
   }
 
   renderBlogPostRow( post, index ) {
 
+    const { dispatch } = this.props
+
     return (
-      <BlogListPost key={ index } post={ post } id={ 'post' + index + '-link' } />
+      <BlogListPost
+        key={ index }
+        index={ index }
+        post={ post }
+        id={ 'post' + index + '-link' }
+        dispatch={ dispatch }
+      />
     )
   }
 
@@ -32,7 +45,8 @@ class BlogListPage extends Component {
   */
 
   render() {
-    const { isFetching, posts } = this.props
+
+    const { posts } = this.props
 
     return (
       <div>

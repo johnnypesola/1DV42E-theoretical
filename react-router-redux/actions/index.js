@@ -4,10 +4,11 @@ export const REQUEST_BLOG_POSTS = 'REQUEST_BLOG_POSTS'
 export const RECEIVE_BLOG_POSTS = 'RECEIVE_BLOG_POSTS'
 export const REQUEST_BLOG_POST = 'REQUEST_BLOG_POST'
 export const RECEIVE_BLOG_POST = 'RECEIVE_BLOG_POST'
+export const DELETE_BLOG_POST = 'DELETE_BLOG_POST'
 
 
 // Test Data constants
-const DATA_PATH = 'data/' // http://pesola.local.se/temp/theoretical-temp/data/
+const DATA_PATH = 'data/'
 const BLOG_POSTS_1000_URL = DATA_PATH + '1000-blog-posts.json'
 const BLOG_POSTS_500_URL = DATA_PATH + '500-blog-posts.json'
 const BLOG_POSTS_100_URL = DATA_PATH + '100-blog-posts.json'
@@ -80,5 +81,12 @@ export function fetchBlogPost( ) {
     return fetch( BLOG_POSTS_1_URL )
       .then( response => response.json() )
       .then( json => dispatch( receiveBlogPost( json ) ) )
+  }
+}
+
+export function deleteBlogPost( index ) {
+  return {
+    type: DELETE_BLOG_POST,
+    index: index
   }
 }

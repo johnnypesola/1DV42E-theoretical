@@ -5,7 +5,7 @@ module.exports = {
   devServer:{
     contentBase: path.resolve('dist')
   },
-  devtool: 'cheap-module-eval-source-map',
+  //devtool: 'cheap-module-eval-source-map',
   entry: [
     // 'webpack-hot-middleware/client',
     './index'
@@ -16,8 +16,21 @@ module.exports = {
     publicPath: '/dist/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
     // new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.AggressiveMergingPlugin()
   ],
   module: {
     loaders: [

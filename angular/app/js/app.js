@@ -27,12 +27,6 @@ AngularVSReact.controller('BlogCtrl', ['$scope', 'BlogPost', function($scope, Bl
 
       $scope.posts.splice( index, 1 );
     };
-
-    $scope.removeLastBlogPost = function( post ){
-
-      $scope.posts.pop();
-    };
-
 }]);
 
 AngularVSReact.controller('BlogPostCtrl', ['$scope', 'BlogPost', function($scope, BlogPost) {

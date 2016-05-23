@@ -7,7 +7,7 @@ class BlogPost extends Component {
     super( props, context )
 
     // Bind 'this' to 'this' in class methods, if they are called within jsx code
-    this.goBack = this.goBack.bind(this)
+    this.goBack = this.goBack.bind( this )
   }
 
   renderBlogPostTag( tag, index ) {

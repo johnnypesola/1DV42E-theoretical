@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, withRouter } from 'react-router'
+import { deleteBlogPost } from '../actions'
 
 class BlogListPost extends Component {
 
@@ -27,13 +28,24 @@ class BlogListPost extends Component {
     return `${ year }-${ month }-${ day } ${ hour }:${ minute }:${ second }`
   }
 
+  removeBlogPost( index ) {
+
+    const { dispatch } = this.props
+
+    dispatch( deleteBlogPost( index, index ) )
+  }
+
   render() {
-    const { post, id } = this.props
+
+    const { post, id, index } = this.props
+
+    const removeBlogPost = this.removeBlogPost.bind( this, index );
 
     return (
       <div>
         <h3>
           <Link to="/post" id={ id }>{ post.header }</Link>
+          <button id={ 'delete' + index + '-button' } onClick={ removeBlogPost }>Remove blog post</button>
         </h3>
         <p>
           { post.content }
@@ -46,7 +58,8 @@ class BlogListPost extends Component {
 
 BlogListPost.propTypes = {
   post: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired
 }
 
 export default withRouter( BlogListPost )

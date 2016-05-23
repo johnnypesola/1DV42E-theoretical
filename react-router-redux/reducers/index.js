@@ -5,9 +5,10 @@ import {
   REQUEST_BLOG_POSTS,
   RECEIVE_BLOG_POSTS,
   REQUEST_BLOG_POST,
-  RECEIVE_BLOG_POST
-} from '../actions'
+  RECEIVE_BLOG_POST,
+  DELETE_BLOG_POST
 
+} from '../actions'
 
 function blogPosts(state = {
   isFetching: false,
@@ -34,6 +35,14 @@ function blogPosts(state = {
         item: action.blogPost,
         lastUpdated: action.receivedAt
       })
+    case DELETE_BLOG_POST:
+
+      return Object.assign({}, state, {
+        items: [
+          ...state.items.slice( 0, action.index ),
+          ...state.items.slice( action.index + 1 )
+        ]
+      });
     default:
       return state
   }
