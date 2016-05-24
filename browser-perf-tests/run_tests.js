@@ -14,7 +14,7 @@ var URLS = {
   angular: 'http://localhost:8001/'
 }
 var FRAMEWORKS = Object.keys( URLS );
-var OUT_FILE = 'test_output/data.json';
+var OUT_FILE = 'test_output/data-' + (new Date).getTime() + '.json';
 var TIMES_TO_REPEAT_TEST = 100;
 var WINDOW_HEIGHT = 768
 var WINDOW_WIDTH = 1024
