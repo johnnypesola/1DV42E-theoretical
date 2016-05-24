@@ -13,7 +13,7 @@ This repo contains three things:
 Well, the purpose is to test if there are any performance differences between the two frameworks in the context
 of displaying a simple blog.
    
-It comes preconfigured with rendering out 1000 blog posts.
+It comes preconfigured with rendering out 1000 blog posts. The tests are run in Chrome and Firefox.
 
 ### Test enviroments
 
