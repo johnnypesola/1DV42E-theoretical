@@ -6,7 +6,7 @@
 // Require dependencies
 var browserPerf = require('browser-perf');
 var fs = require('fs');
-var blogActions = require( './blog-actions.js' );
+var blogActions = require( './test_actions/blog-actions.js' );
 
 // Settings
 var URLS = {
@@ -14,8 +14,8 @@ var URLS = {
   angular: 'http://localhost:8001/'
 }
 var FRAMEWORKS = Object.keys( URLS );
-var OUT_FILE = 'data.json';
-var TIMES_TO_REPEAT_TEST = 10;
+var OUT_FILE = 'test_output/data.json';
+var TIMES_TO_REPEAT_TEST = 100;
 var WINDOW_HEIGHT = 768
 var WINDOW_WIDTH = 1024
 
