@@ -21,23 +21,7 @@ var WINDOW_WIDTH = 1024
 
 var BROWSER_PERF_OPTIONS = {
   selenium: 'http://localhost:4444/wd/hub',
-  browsers: [
-    {
-      browserName: 'chrome',
-      chromeOptions: {
-        args: [
-          '--window-size=' + WINDOW_WIDTH + ',' + WINDOW_HEIGHT,
-          '--window-position=0,0',
-          '--enable-memory-benchmarking',
-          '--enable-benchmarking',
-          '--memory-metrics'
-        ]
-      }
-    },
-    {
-      browserName: 'firefox'
-    }
-  ],
+  browsers: ['chrome', 'firefox'],
   actions: [
     blogActions()
   ]
