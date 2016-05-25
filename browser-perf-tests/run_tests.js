@@ -21,7 +21,19 @@ var WINDOW_WIDTH = 1024
 
 var BROWSER_PERF_OPTIONS = {
   selenium: 'http://localhost:4444/wd/hub',
-  browsers: ['chrome', 'firefox'],
+  browsers: [
+    {
+      browserName:"chrome",
+      chromeOptions: {
+        perfLoggingPrefs : {
+          traceCategories: ",blink.console,devtools.timeline,disabled-by-default-devtools.timeline,toplevel,disabled-by-default-devtools.timeline.frame,benchmark"},
+          args: ["--enable-gpu-benchmarking","--enable-thread-composting"]},
+          loggingPrefs: {performance: "ALL"}
+    },
+    {
+      browserName: "firefox"
+    }
+  ],
   actions: [
     blogActions()
   ]

@@ -4,9 +4,20 @@
 
 // Require dependencies
 var util = require('util');
+var fs = require('fs');
+var colors = require('colors/safe');
+
+// Get arguments
+var args = process.argv.slice(2);
+
+if( args.length === 0) {
+  console.log( colors.red('Please provide data filename. Example: npm run process data-123123123.json \n\n') );
+  return false;
+}
 
 // Settings
-var OUT_FILE = './test_output/data.json';
+var IN_FILE = './test_output/' + args[0] ;
+var PROCESSED_OUT_FILE = 'test_output/' + args[0].split('.json')[0] + '-processed.json';
 
 function getNumberOfTestsForBrowser( browserObj ) {
 
@@ -78,7 +89,7 @@ function getProcessedData(jsonSourceFile ) {
       browserArray.push(
         {
           browserName: browserName,
-          numberOftestsDone: numberOfTestForBrowser,
+          numberOfTestsDone: numberOfTestForBrowser,
           testProperties: testPropArray
         }
       )
@@ -95,11 +106,20 @@ function getProcessedData(jsonSourceFile ) {
   return frameWorkArray;
 }
 
+function saveData( data, fileName ){
+
+  // Write out test results
+  fs.writeFileSync( fileName, JSON.stringify( data ) );
+
+}
+
 // Init tests
 (function runTest( i ) {
 
-  var processedData = getProcessedData( OUT_FILE );
+  var processedData = getProcessedData( IN_FILE );
 
-  console.log( util.inspect( processedData, false, null ) );
+  saveData( processedData, PROCESSED_OUT_FILE );
+
+  console.log( colors.green('File processed and saved to: ' + PROCESSED_OUT_FILE + '\n\n'));
 
 }( 0 ));

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "browser-perf": "^1.4.5"
+    "browser-perf": "^1.4.5",
+    "colors": "^1.1.2"
   }
 }
