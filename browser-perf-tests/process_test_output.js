@@ -17,7 +17,8 @@ if( args.length === 0) {
 
 // Settings
 var IN_FILE = './test_output/' + args[0] ;
-var PROCESSED_OUT_FILE = 'test_output/' + args[0].split('.json')[0] + '-processed.json';
+//var PROCESSED_OUT_FILE = 'test_output/' + args[0].split('.json')[0] + '-processed.json';
+var PROCESSED_OUT_FILE = 'test_charts/chart-data.json';
 
 function getNumberOfTestsForBrowser( browserObj ) {
 

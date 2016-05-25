@@ -7,12 +7,14 @@
     "prestart": "npm install",
     "start": "node run_tests.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "process": "node process_test_output.js"
+    "process": "node process_test_output.js",
+    "charts": "http-server -a 0.0.0.0 -p 8002 ./test_charts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "browser-perf": "^1.4.5",
-    "colors": "^1.1.2"
+    "colors": "^1.1.2",
+    "http-server": "^0.9.0"
   }
 }
