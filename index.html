@@ -1,0 +1,89 @@
+<html>
+<head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript">
+
+        function prepareChartData( dataObj ) {
+
+            var chartOutputObj = {};
+
+            dataObj.forEach( function( frameWorkObj ) {
+
+                frameWorkObj.browsers.forEach( function( browserObj ){
+
+                    browserObj.testProperties.forEach( function( testPropertyObj ) {
+
+                        var chartName = 'Browser: ' + browserObj.browserName + '\n' +
+                                        'Property: ' + testPropertyObj.testPropertyName;
+
+                        if( chartOutputObj[ chartName ] === undefined ) {
+                            chartOutputObj[ chartName ] = [];
+                        }
+
+                        chartOutputObj[ chartName ].push(
+                            [ frameWorkObj.frameWorkName, testPropertyObj.max, testPropertyObj.average, testPropertyObj.min ]
+                        )
+                    } )
+                } )
+            } )
+
+            return chartOutputObj;
+        }
+
+        // Get json data
+        $.get( "chart-data.json", function( dataObj ) {
+
+            var chartOutputObj = prepareChartData( dataObj );
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawCharts);
+
+            function drawCharts() {
+
+                for( var chartName in chartOutputObj ) {
+
+                    drawChart( chartName, chartOutputObj[ chartName ] )
+                }
+            }
+
+            function drawChart( chartName, chartOutput ) {
+
+                $( document.body ).append(
+                    '<div id="' + chartName + '"></div>'
+                );
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'something');
+                data.addColumn('number', 'Max');
+                data.addColumn('number', 'Average');
+                data.addColumn('number', 'Min');
+                data.addRows( chartOutput );
+
+                // Set chart options
+                var options = {
+                    'title': chartName,
+                    'fontSize': 12,
+                    'width':600,
+                    'height':300
+                };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.ColumnChart( document.getElementById( chartName ) );
+                chart.draw(data, options);
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+<!--Div that will hold the pie chart-->
+<div id="chart_div"></div>
+</body>
+</html>
