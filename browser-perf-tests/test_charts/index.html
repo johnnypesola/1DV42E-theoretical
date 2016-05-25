@@ -2,62 +2,92 @@
 <head>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script type="text/javascript">
 
-        // Define json load function
-        function loadJSON(callback) {
+        function prepareChartData( dataObj ) {
 
-            var xobj = new XMLHttpRequest();
-            xobj.overrideMimeType("application/json");
-            xobj.open('GET', 'chart-data.json', true);
-            xobj.onreadystatechange = function () {
-                if (xobj.readyState == 4 && xobj.status == "200") {
-                    // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-                    callback(xobj.responseText);
-                }
-            };
-            xobj.send(null);
+            var chartOutputObj = {};
+
+            dataObj.forEach( function( frameWorkObj ) {
+
+                frameWorkObj.browsers.forEach( function( browserObj ){
+
+                    browserObj.testProperties.forEach( function( testPropertyObj ) {
+
+                        var chartName = '(' + browserObj.browserName + ') ' + testPropertyObj.testPropertyName;
+
+                        if( chartOutputObj[ chartName ] === undefined ) {
+                            chartOutputObj[ chartName ] = [];
+                        }
+
+                        chartOutputObj[ chartName ].push(
+                            [ frameWorkObj.frameWorkName, testPropertyObj.max, testPropertyObj.average, testPropertyObj.min ]
+                        )
+                    } )
+                } )
+            } )
+
+            return chartOutputObj;
         }
 
         // Get json data
-        loadJSON( function( chartDataObj ){
+        $.get( "chart-data.json", function( dataObj ) {
 
-            console.log( chartDataObj );
+            var chartOutputObj = prepareChartData( dataObj );
 
+            var barColors = {
+                'reactRouterRedux(Average)': '#0000ff',
+                'reactRouterRedux(Max)': '#aaaaff',
+                'reactRouterRedux(Min)': '#aaaaff',
+                'angular(Average)': '#ff0000',
+                'angular(Max)': '#ffaaaa',
+                'angular(Min)': '#ffaaaa'
+            }
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawCharts);
+
+            function drawCharts() {
+
+                for( var chartName in chartOutputObj ) {
+
+                    drawChart( chartName, chartOutputObj[ chartName ] )
+                }
+            }
+
+            function drawChart( chartName, chartOutput ) {
+
+                $( document.body ).append(
+                    '<div id="' + chartName + '"></div>'
+                );
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'something');
+                data.addColumn('number', 'Max');
+                data.addColumn('number', 'Average');
+                data.addColumn('number', 'Min');
+                data.addRows( chartOutput );
+
+                // Set chart options
+                var options = {
+                    'title': chartName,
+                    'fontSize': 12,
+                    'width':600,
+                    'height':300,
+                    'backgroundColor': barColors[ chartOutput[0] ]
+                };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.ColumnChart( document.getElementById( chartName ) );
+                chart.draw(data, options);
+            }
         })
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
-
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
-
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Slices');
-            data.addRows([
-                ['Mushrooms', 3],
-                ['Onions', 1],
-                ['Olives', 1],
-                ['Zucchini', 1],
-                ['Pepperoni', 2]
-            ]);
-
-            // Set chart options
-            var options = {'title':'How Much Pizza I Ate Last Night',
-                'width':400,
-                'height':300};
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
     </script>
 </head>
 

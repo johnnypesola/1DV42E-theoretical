@@ -30,8 +30,9 @@ I'm sure this could be optimized, and maybe I'll look in to that in the future. 
 5. Fire up another console and run `cd react-router-redux` and after that `npm start` to fire up the web server for the react-router-redux blog.
 6. Fire up another console and run `cd browser-perf-tests` and after that `npm start` to initiate the tests. It's configured to run 100 tests. Change this in `browser-perf-tests/run_tests.js`
 7. The output goes into the folder `browser-perf-tests/test_output`.
-8. If you want process the testdata then run `npm run process` in the `browser-perf-tests` folder.
+8. If you want to process the testdata then run `npm run process` in the `browser-perf-tests` folder.
+9. If you want to see nice charts over the processed testdata then run `npm run charts` in the `browser-perf-tests` folder.
 
 ### Known issues
 
-It seems that some test values are missing when using browser-perf on Windows 10.  
+Sometimes on some systems, all metrics wont be included for some reason when running the tests. Could be a bug in browser-perf or in case some undocumented dependency is missing.    

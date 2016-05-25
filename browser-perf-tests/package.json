@@ -8,7 +8,7 @@
     "start": "node run_tests.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "process": "node process_test_output.js",
-    "charts": "http-server -a 0.0.0.0 -p 8002 ./test_charts"
+    "charts": "http-server -a 0.0.0.0 -p 8002 ./test_charts -o"
   },
   "author": "",
   "license": "ISC",
