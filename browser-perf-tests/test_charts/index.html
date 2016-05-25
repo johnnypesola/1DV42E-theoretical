@@ -15,7 +15,8 @@
 
                     browserObj.testProperties.forEach( function( testPropertyObj ) {
 
-                        var chartName = '(' + browserObj.browserName + ') ' + testPropertyObj.testPropertyName;
+                        var chartName = 'Browser: ' + browserObj.browserName + '\n' +
+                                        'Property: ' + testPropertyObj.testPropertyName;
 
                         if( chartOutputObj[ chartName ] === undefined ) {
                             chartOutputObj[ chartName ] = [];
@@ -35,15 +36,6 @@
         $.get( "chart-data.json", function( dataObj ) {
 
             var chartOutputObj = prepareChartData( dataObj );
-
-            var barColors = {
-                'reactRouterRedux(Average)': '#0000ff',
-                'reactRouterRedux(Max)': '#aaaaff',
-                'reactRouterRedux(Min)': '#aaaaff',
-                'angular(Average)': '#ff0000',
-                'angular(Max)': '#ffaaaa',
-                'angular(Min)': '#ffaaaa'
-            }
 
             // Load the Visualization API and the corechart package.
             google.charts.load('current', {'packages':['corechart']});
@@ -78,8 +70,7 @@
                     'title': chartName,
                     'fontSize': 12,
                     'width':600,
-                    'height':300,
-                    'backgroundColor': barColors[ chartOutput[0] ]
+                    'height':300
                 };
 
                 // Instantiate and draw our chart, passing in some options.
