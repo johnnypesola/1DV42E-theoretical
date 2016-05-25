@@ -27,7 +27,12 @@ var BROWSER_PERF_OPTIONS = {
       chromeOptions: {
         perfLoggingPrefs : {
           traceCategories: ",blink.console,devtools.timeline,disabled-by-default-devtools.timeline,toplevel,disabled-by-default-devtools.timeline.frame,benchmark"},
-          args: ["--enable-gpu-benchmarking","--enable-thread-composting"]},
+          args: [
+            "--enable-gpu-benchmarking",
+            "--enable-thread-composting",
+            '--window-size=' + WINDOW_WIDTH + ',' + WINDOW_HEIGHT
+          ]
+      },
           loggingPrefs: {performance: "ALL"}
     },
     {
