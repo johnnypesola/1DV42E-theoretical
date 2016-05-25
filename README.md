@@ -17,7 +17,11 @@ It comes preconfigured with rendering out 1000 blog posts. The tests are run in 
 
 ### Test enviroments
 
-Theese tests have been executed in an Windows 7 enviroment, where they worked quite well. 
+Theese tests have been executed in an Windows 7 and Windows 10 enviroment, where they worked quite well. 
+
+### Test results
+
+The test results can be found [here](http://johnnypesola.github.io/1DV42E-theoretical/).
 
 ## Install instructions
 
