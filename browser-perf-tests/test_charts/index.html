@@ -45,10 +45,18 @@
 
             function drawCharts() {
 
+                var chartCount = 0;
+
                 for( var chartName in chartOutputObj ) {
 
                     drawChart( chartName, chartOutputObj[ chartName ] )
+
+                    chartCount++
                 }
+
+                $( document.body ).append(
+                    '<div> Total number of charts: ' + chartCount + '</div>'
+                )
             }
 
             function drawChart( chartName, chartOutput ) {

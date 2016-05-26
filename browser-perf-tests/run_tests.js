@@ -40,7 +40,8 @@ var BROWSER_PERF_OPTIONS = {
     }
   ],
   actions: [
-    blogActions()
+    blogActions(),
+    browserPerf.actions.scroll()
   ]
 }
 
