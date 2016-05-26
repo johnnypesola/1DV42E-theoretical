@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
   dslVersion="1.0.0.0"
   Id="7fe2c831-d1dc-419b-b546-4eea81e5697e"
   name="ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -189,6 +189,18 @@
                 LastKnownName="ExecutionOccurrenceSpecification32"
                 LastKnownLocation="ModelingProject.uml" />
               <messageOccurrenceSpecificationMoniker
+                Id="8535ede2-f469-403c-9fdc-b5fcdaf97a1a"
+                LastKnownName="MessageOccurrenceSpecification50"
+                LastKnownLocation="ModelingProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="73ce18e0-f682-433f-aa66-0c15495cdac4"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="ModelingProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="852ff6c8-8bb8-4966-91bc-ac06687f8000"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="ModelingProject.uml" />
+              <messageOccurrenceSpecificationMoniker
                 Id="76d9f67c-1f4c-48f2-9a78-a2d66a89cbda"
                 LastKnownName="MessageOccurrenceSpecification22"
                 LastKnownLocation="ModelingProject.uml" />
@@ -283,22 +295,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="99750574-6c84-4b8e-901c-1f89cf4e519a"
-            name="MessageOccurrenceSpecification39">
-            <covered>
-              <lifelineMoniker
-                Id="b85284bf-d3a6-476e-b4bc-1e000bf4c43b"
-                LastKnownName="Single blog post view/component"
-                LastKnownLocation="ModelingProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="1f2cf68c-07cb-4465-bc02-a8addf3ce6af"
             name="MessageOccurrenceSpecification38">
             <covered>
               <lifelineMoniker
                 Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
                 LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="99750574-6c84-4b8e-901c-1f89cf4e519a"
+            name="MessageOccurrenceSpecification39">
+            <covered>
+              <lifelineMoniker
+                Id="b85284bf-d3a6-476e-b4bc-1e000bf4c43b"
+                LastKnownName="Single blog post view/component"
                 LastKnownLocation="ModelingProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -677,6 +689,90 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
+            Id="8535ede2-f469-403c-9fdc-b5fcdaf97a1a"
+            name="MessageOccurrenceSpecification50">
+            <covered>
+              <lifelineMoniker
+                Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
+                LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="4ee44d50-12e5-4b24-9c79-02d4b0071e4d"
+            name="BehaviorExecutionSpecification17">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
+                LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="852ff6c8-8bb8-4966-91bc-ac06687f8000"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="ModelingProject.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="73ce18e0-f682-433f-aa66-0c15495cdac4"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="ModelingProject.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="8d77b567-10ba-46a4-aaec-7a93f6d7b6fc"
+                LastKnownName="MessageOccurrenceSpecification51"
+                LastKnownLocation="ModelingProject.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="73ce18e0-f682-433f-aa66-0c15495cdac4"
+            name="ExecutionOccurrenceSpecification33">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="b32ee9e0-af01-45a5-b5f1-17781eba0be0"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="ModelingProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
+                LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="8d77b567-10ba-46a4-aaec-7a93f6d7b6fc"
+            name="MessageOccurrenceSpecification51">
+            <covered>
+              <lifelineMoniker
+                Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
+                LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="852ff6c8-8bb8-4966-91bc-ac06687f8000"
+            name="ExecutionOccurrenceSpecification34">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="7e42bce9-8f1e-4fc1-997f-25b059deaf2e"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="ModelingProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="2648b7fc-7820-4a45-98f4-e37b7dc2ab8b"
+                LastKnownName="Blog posts list  view/component"
+                LastKnownLocation="ModelingProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
             Id="76d9f67c-1f4c-48f2-9a78-a2d66a89cbda"
             name="MessageOccurrenceSpecification22">
             <covered>
@@ -973,6 +1069,25 @@
             </receiveEvent>
           </message>
           <message
+            Id="d0dbecc0-8895-4319-8c0c-63ac7bbbe638"
+            name="Scrolls down the page"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="8535ede2-f469-403c-9fdc-b5fcdaf97a1a"
+                LastKnownName="MessageOccurrenceSpecification50"
+                LastKnownLocation="ModelingProject.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="8d77b567-10ba-46a4-aaec-7a93f6d7b6fc"
+                LastKnownName="MessageOccurrenceSpecification51"
+                LastKnownLocation="ModelingProject.uml" />
+            </receiveEvent>
+          </message>
+          <message
             Id="eaad178e-928b-4f87-87d1-b86419937244"
             messageKind="Complete"
             messageSort="Reply"
@@ -1080,6 +1195,16 @@
     <packageHasNamedElement>
       <executionEvent
         Id="98e5e730-99ac-432e-b86e-710735a6b14a"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="b32ee9e0-af01-45a5-b5f1-17781eba0be0"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="7e42bce9-8f1e-4fc1-997f-25b059deaf2e"
         name="ExecutionEvent" />
     </packageHasNamedElement>
   </packagedElements>

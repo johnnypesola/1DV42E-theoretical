@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a7ca81c0-13f2-4fcd-8cab-4fe9144f65e5" name="browserPerf flow" linkedPackageId="a7372a2e-6425-47e3-8dc2-3e5c75177c80" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="e5800b72-970c-4b19-9789-5dc52fba35d2">
-      <profileInstance Id="bbc361a3-b461-4b6d-8313-070dff5ed8bc" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="ab8fce57-85c4-454c-97ac-cd0ea9daa201">
-      <profileInstance Id="792b5b3d-01e3-44ed-bdd9-45e9d490fd9d" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a7ca81c0-13f2-4fcd-8cab-4fe9144f65e5" name="browserPerf flow" linkedPackageId="a7372a2e-6425-47e3-8dc2-3e5c75177c80" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="48385bd3-6ee9-4289-95de-0054583181f9" name="browserPerf flow" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -87,6 +73,9 @@
               <messageOccurrenceSpecificationMoniker Id="13c22b7f-fe12-4388-a5d0-1da589c96200" LastKnownName="MessageOccurrenceSpecification48" />
               <executionOccurrenceSpecificationMoniker Id="1083d608-e5f9-4306-924b-569dcafcf932" LastKnownName="ExecutionOccurrenceSpecification31" />
               <executionOccurrenceSpecificationMoniker Id="588fa75e-af81-4a9b-bfbc-28747acf3af4" LastKnownName="ExecutionOccurrenceSpecification32" />
+              <messageOccurrenceSpecificationMoniker Id="8b7f1c6b-028b-4a85-b87b-bf6b11631912" LastKnownName="MessageOccurrenceSpecification50" />
+              <executionOccurrenceSpecificationMoniker Id="edec452d-4dd6-4790-9358-29f244a392ee" LastKnownName="ExecutionOccurrenceSpecification33" />
+              <executionOccurrenceSpecificationMoniker Id="9a84659b-b0fe-4c6a-a22f-fcbc804369b1" LastKnownName="ExecutionOccurrenceSpecification34" />
               <messageOccurrenceSpecificationMoniker Id="379c1c0d-1d50-4b69-b93e-d4dd4880d4a8" LastKnownName="MessageOccurrenceSpecification22" />
             </nestedOccurrences>
           </behaviorExecutionSpecification>
@@ -140,16 +129,16 @@
               <lifelineMoniker Id="bfaef39f-7709-4f7c-a315-d8a9a2174203" LastKnownName="Single blog post view/component" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="7aa23a11-5814-497e-9695-ecf6cb67a37d" name="MessageOccurrenceSpecification39">
-            <elementDefinition Id="99750574-6c84-4b8e-901c-1f89cf4e519a" />
-            <covered>
-              <lifelineMoniker Id="bfaef39f-7709-4f7c-a315-d8a9a2174203" LastKnownName="Single blog post view/component" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="2a32f81b-d7ab-4fe3-86ae-e2e9f117474a" name="MessageOccurrenceSpecification38">
             <elementDefinition Id="1f2cf68c-07cb-4465-bc02-a8addf3ce6af" />
             <covered>
               <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7aa23a11-5814-497e-9695-ecf6cb67a37d" name="MessageOccurrenceSpecification39">
+            <elementDefinition Id="99750574-6c84-4b8e-901c-1f89cf4e519a" />
+            <covered>
+              <lifelineMoniker Id="bfaef39f-7709-4f7c-a315-d8a9a2174203" LastKnownName="Single blog post view/component" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="8f949b17-27e1-45db-b2e2-583af0f11ba0" name="MessageOccurrenceSpecification41">
@@ -371,6 +360,55 @@
               <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
             </covered>
           </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8b7f1c6b-028b-4a85-b87b-bf6b11631912" name="MessageOccurrenceSpecification50">
+            <elementDefinition Id="8535ede2-f469-403c-9fdc-b5fcdaf97a1a" />
+            <covered>
+              <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="05b2822c-923f-4c2a-b8ab-e2a38243fc5e" name="BehaviorExecutionSpecification17">
+            <elementDefinition Id="4ee44d50-12e5-4b24-9c79-02d4b0071e4d" />
+            <coveredLifelines>
+              <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="9a84659b-b0fe-4c6a-a22f-fcbc804369b1" LastKnownName="ExecutionOccurrenceSpecification34" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="edec452d-4dd6-4790-9358-29f244a392ee" LastKnownName="ExecutionOccurrenceSpecification33" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="c1814427-0936-44fd-a1dd-2438d67e5695" LastKnownName="MessageOccurrenceSpecification51" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="edec452d-4dd6-4790-9358-29f244a392ee" name="ExecutionOccurrenceSpecification33">
+            <elementDefinition Id="73ce18e0-f682-433f-aa66-0c15495cdac4" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e3d28a09-80a1-4b39-88a0-34a0746d69e4" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c1814427-0936-44fd-a1dd-2438d67e5695" name="MessageOccurrenceSpecification51">
+            <elementDefinition Id="8d77b567-10ba-46a4-aaec-7a93f6d7b6fc" />
+            <covered>
+              <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="9a84659b-b0fe-4c6a-a22f-fcbc804369b1" name="ExecutionOccurrenceSpecification34">
+            <elementDefinition Id="852ff6c8-8bb8-4966-91bc-ac06687f8000" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="3706d8f9-93ca-48cf-8a39-cb70255d2e7f" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7fe3e447-033c-4159-9a5b-6de17b6e6260" LastKnownName="Blog posts list  view/component" />
+            </covered>
+          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification Id="379c1c0d-1d50-4b69-b93e-d4dd4880d4a8" name="MessageOccurrenceSpecification22">
             <elementDefinition Id="76d9f67c-1f4c-48f2-9a78-a2d66a89cbda" />
             <covered>
@@ -521,6 +559,15 @@
               <messageOccurrenceSpecificationMoniker Id="ffbcf0f3-05ee-4499-afc5-aa54d0cc5076" LastKnownName="MessageOccurrenceSpecification49" />
             </receiveEvent>
           </message>
+          <message Id="d0802161-5346-4559-a9cf-d3f088037766" name="Scrolls down the page" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true">
+            <elementDefinition Id="d0dbecc0-8895-4319-8c0c-63ac7bbbe638" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="8b7f1c6b-028b-4a85-b87b-bf6b11631912" LastKnownName="MessageOccurrenceSpecification50" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c1814427-0936-44fd-a1dd-2438d67e5695" LastKnownName="MessageOccurrenceSpecification51" />
+            </receiveEvent>
+          </message>
           <message Id="52a9af98-6037-4165-be58-c6787b57ed4b" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
             <elementDefinition Id="eaad178e-928b-4f87-87d1-b86419937244" />
             <sendEvent>
@@ -612,8 +659,32 @@
         <elementDefinition Id="98e5e730-99ac-432e-b86e-710735a6b14a" />
       </executionEvent>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e3d28a09-80a1-4b39-88a0-34a0746d69e4" name="ExecutionEvent">
+        <elementDefinition Id="b32ee9e0-af01-45a5-b5f1-17781eba0be0" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="3706d8f9-93ca-48cf-8a39-cb70255d2e7f" name="ExecutionEvent">
+        <elementDefinition Id="7e42bce9-8f1e-4fc1-997f-25b059deaf2e" />
+      </executionEvent>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="a7372a2e-6425-47e3-8dc2-3e5c75177c80" name="ModelingProject">
     <elementDefinition Id="7fe2c831-d1dc-419b-b546-4eea81e5697e" />
+    <profileInstances>
+      <packageHasProfileInstances Id="e5800b72-970c-4b19-9789-5dc52fba35d2">
+        <profileInstance Id="bbc361a3-b461-4b6d-8313-070dff5ed8bc" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="ab8fce57-85c4-454c-97ac-cd0ea9daa201">
+        <profileInstance Id="792b5b3d-01e3-44ed-bdd9-45e9d490fd9d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </SequenceDesignerModel>
